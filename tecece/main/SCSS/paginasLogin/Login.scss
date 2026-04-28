@@ -1,0 +1,106 @@
+@use '../Global/mixins' as *;
+
+#box-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 75%;
+    height: 55%;
+
+    #inputs {
+        @include flex-center(column, space-around);
+        width: 100%;
+        height: 70%;
+
+        .centralizacao-tamanho-inputs {
+            @include flex-center(row, center);
+            position: relative;
+            width: 85%;
+
+            svg {
+                position: absolute;
+                left: 15px;
+                color: #666;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+#header-box-direita {
+    width: 100%;
+
+    #botao-titulo {
+        @include flex-center(row, space-between);
+        background-color: #74a1ed;
+    }
+}
+
+.inputs, .tamanho-inputs {
+    width: 100%;
+    text-align: center;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+
+    &.inputs {
+        height: 40px;
+        border: 2px solid #b8d9f0;
+        border-radius: 10px;
+        background-color: #f3f9ff;
+        box-shadow: 0px 0px 4px 0px rgba(34, 80, 251, 0.62);
+        padding: 0;
+
+        &:focus {
+            border-color: #5095f0;
+        }
+    }
+
+    &.tamanho-inputs {
+        padding: 12px 12px 12px 45px;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+    
+}
+
+.labels-margin{
+    margin: 0px 0px 4px 10px
+}
+
+.campos-displays{
+    @include flex-center(column, center);
+    align-items: flex-start;
+}
+
+#box-botoes {
+    @include flex-center(row, center);
+    height: 10%;
+    width: 85%;
+    margin-top: 15px;
+
+    #botao-login {
+        @include estilo-botao-padrao;
+        @include efeito-borda-animada(#0f61db);
+        border: 2px solid #5095f0;
+        width: 89%;
+        height: 100%;
+        background-color: #5095f0;
+    }
+}
+
+#botao-voltar {
+    @include estilo-botao-padrao;
+    @include efeito-borda-animada(#575e69);
+    border: 2px solid #adaeaf;
+    width: 10%;
+    height: 35px;
+}
+
+
+
+#lembre-esqueceu, #esqueci-lembrar {
+    @include flex-center(row, space-around);
+    width: 100%;
+}
