@@ -45,6 +45,7 @@
         background-color: #f3f9ff;
         box-shadow: 0px 0px 4px 0px rgba(34, 80, 251, 0.62);
         padding: 0;
+        box-sizing: border-box;
 
         &:focus {
             border-color: #5095f0;
