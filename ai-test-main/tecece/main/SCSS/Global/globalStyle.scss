@@ -1,0 +1,35 @@
+:root {
+    --fonte-principal: 'Josefin Sans', sans-serif;
+    --peso-fonte: 700;
+
+    --cor-texto: #3f3b3b;
+    --cor-bordas-inputs: #b8d9f0;
+    --cor-primaria: #5095f0;
+
+    --tamanho-titulo: 25px
+}
+
+.text-sm {
+    font-size: 15px;
+}
+
+.text-md {
+    font-size: 20px;
+}
+
+.text-lg {
+    font-size: 25px;
+}
+
+.text-xl {
+    font-size: 30px;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.m-0 {
+    margin: 0;
+}
+
