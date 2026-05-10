@@ -1,0 +1,163 @@
+@use '../Global/mixins' as *;
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+#box-principal {
+    @include flex-center(row-reverse, normal);
+    align-items: normal;
+
+    height: 100%;
+
+    background-color: var(--cor-fundo);
+}
+
+#box-direita {
+    @include flex-center(column, normal);
+
+    width: 100%;
+    height: 100%;
+
+    #cabecalho {
+        @include flex-center(row, normal);
+        height: 7%;
+        width: 100%;
+
+        // Técnica de borda degradê que funciona com fundo sólido
+        background:
+            linear-gradient(white, white) padding-box, linear-gradient(rgba(59, 180, 214, 0) 0%, #2b75e4 100%) border-box; // Seu degradê (na área da borda)
+
+        border-bottom: 2px solid transparent;
+
+        background: white;
+
+        #seta-diminuir-tamanho {
+            @include flex-center(row, center);
+            padding: 4px;
+            margin-left: 10px;
+
+            border-radius: 30px;
+
+            background-color: #0b326b;
+
+            cursor: pointer;
+
+            svg {
+                height: 22px;
+                width: 22px;
+            }
+        }
+    }
+
+    #box-conteudo {
+        height: 90%;
+        width: 100%;
+
+        background-color: var(--cor-fundo2);
+    }
+}
+
+#sidebar {
+    @include flex-center(column, normal);
+
+    height: 100%;
+    width: 15%;
+
+    background: linear-gradient(232deg, rgb(255, 255, 255) -0.02%, rgb(255, 255, 255) 99.14%), rgb(255, 255, 255);
+
+    font-family: var(--fonte-principal);
+
+    #box-logo {
+        @include flex-center(row, center);
+        margin-top: 10px;
+
+        img {
+            height: 70px;
+        }
+
+        span {
+            font-size: 25px;
+            font-weight: bold;
+
+            color: var(--cor-texto);
+        }
+    }
+
+    #sidebar-links {
+        @include flex-center(column, normal);
+
+        height: 100%;
+        width: 100%;
+        gap: 12px;
+        margin-top: 20px;
+
+        a {
+            @include flex-center(row, center);
+
+            color: #3f3b3b;
+            box-shadow: 0px 2px 4px 0px rgb(36 53 67 / 35%);
+            background: linear-gradient(93deg, rgb(248 248 248) -0.02%, rgb(255 255 255) 99.14%), rgb(255 255 255);
+            text-decoration: none;
+
+            border-radius: 20px;
+
+            width: 90%;
+            height: 5%;
+
+            gap: 10px;
+
+            span {
+                font-size: 18px;
+            }
+
+            svg {
+                height: 30px;
+                width: 30px;
+            }
+
+            &:hover {
+                border-radius: 20px;
+                background: linear-gradient(rgba(59, 180, 214, 0) 0%, #f8fafd 100%), linear-gradient(1deg, #ffffff 0.36%, #ffffff 99.64%);
+                box-shadow: 0px 2px 4px 0px rgb(33 112 231 / 50%);
+
+                transition: 0.2s;
+
+                color: #2c78e7;
+
+                svg {
+                    color: #2d5fb5;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1366px) {
+    #cabecalho {
+        width: 50%;
+    }
+
+    #box-logo {
+        background-color: var(--cor-mais-clara);
+        border-radius: 10px;
+        padding: 7px;
+
+        span {
+            display: none;
+        }
+    }
+
+    #sidebar-links {
+
+        span {
+            display: none;
+        }
+    }
+}
