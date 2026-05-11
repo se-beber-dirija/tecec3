@@ -1,0 +1,270 @@
+@use '../Global/mixins' as *;
+
+:root {
+    --fonte-principal: 'Josefin Sans', sans-serif;
+    --peso-fonte: 700;
+
+    // Paleta Azul
+    --cor-mais-escura: #1a3a6b;
+    --cor-escura: #2d5fb5;
+    --cor-primaria: #5095f0;
+    --cor-clara: #74a1ed;
+    --cor-mais-clara: #d4e4fc;
+    --azul-1: #74a1ed;
+
+    // Cores Neutras
+    --cor-texto: #3f3b3b;
+    --cor-fundo: #f4f5f7;
+    --cor-fundo2: #f4f5f7;
+    --cor-bordas-inputs: #b8d9f0;
+
+    // Cores Header (Homepage)
+    --cor1-header: #2c78e7;
+    --cor2-header: rgb(15 104 193);
+    --cor3-header: rgb(38 111 185);
+
+    --tamanho-titulo: 25px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+#box-principal {
+    @include flex-center(row-reverse, normal);
+    align-items: normal;
+
+    height: 100%;
+
+    background-color: var(--cor-fundo);
+}
+
+#box-direita {
+    @include flex-center(column, normal);
+
+    width: 100%;
+    height: 100%;
+
+    #cabecalho {
+        @include flex-center(row, normal);
+        height: 7%;
+        width: 100%;
+
+        // Técnica de borda degradê que funciona com fundo sólido
+        background:
+            linear-gradient(white, white) padding-box, linear-gradient(rgba(59, 180, 214, 0) 0%, #2b75e4 100%) border-box; // Seu degradê (na área da borda)
+
+        border-bottom: 2px solid transparent;
+
+        background: white;
+
+        #seta-diminuir-tamanho {
+            @include flex-center(row, center);
+            padding: 4px;
+            margin-left: 10px;
+
+            border-radius: 30px;
+
+            background-color: #0b326b;
+
+            cursor: pointer;
+
+            svg {
+                height: 22px;
+                width: 22px;
+            }
+        }
+    }
+
+    #box-conteudo {
+        height: 90%;
+        width: 100%;
+
+        background-color: var(--cor-fundo2);
+    }
+}
+
+#sidebar {
+    @include flex-center(column, normal);
+
+    height: 100%;
+    width: 15%;
+
+    background: linear-gradient(232deg, rgb(255, 255, 255) -0.02%, rgb(255, 255, 255) 99.14%), rgb(255, 255, 255);
+
+    font-family: var(--fonte-principal);
+
+    #box-logo {
+        @include flex-center(row, center);
+        margin-top: 10px;
+
+        img {
+            height: 70px;
+        }
+
+        span {
+            font-size: 25px;
+            font-weight: bold;
+
+            color: var(--cor-texto);
+        }
+        
+        .holographic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+        
+        .holographic-card {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            transition: all 0.5s ease;
+            
+            .holographic-card h2 {
+                color: #0ff;
+                font-size: 2rem;
+                position: relative;
+                z-index: 2;
+            }
+            
+            &.holographic-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(0deg,
+                        transparent,
+                        transparent 30%,
+                        rgba(85, 164, 255, 0.3));
+                transform: rotate(-45deg);
+                transition: all 0.5s ease;
+                opacity: 0;
+            }
+
+            &.holographic-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 10px rgba(82, 122, 255, 0.5);
+            }
+        
+            &.holographic-card:hover::before {
+                opacity: 1;
+                transform: rotate(-45deg) translateY(100%);
+            }
+        }
+    }
+
+    #sidebar-links {
+        @include flex-center(column, normal);
+
+        height: 100%;
+        width: 100%;
+        gap: 12px;
+        margin-top: 20px;
+
+        button {
+            text-decoration: none;
+            width: 90%;
+            height: 5%;
+            gap: 10px;
+
+            .svgs {
+                height: 26px;
+                width: 26px;
+            }
+        }
+    }
+}
+
+button.expand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    --button-height: 48px;
+    max-width: 100%;
+    padding: 12px 25px;
+    overflow: hidden;
+    outline: none;
+    background-color: #74a1ed;
+    border-radius: 10px;
+    font-size: 1.1em;
+    color: white;
+    border: none;
+    font-family: var(--fonte-principal);
+    cursor: pointer;
+    position: relative;
+    transition: padding 0.3s;
+    margin: 0 auto;
+}
+
+.expand-icon {
+    --icon-size: 10px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    height: var(--button-height);
+    width: var(--button-height);
+    border-left: 2px solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(calc(var(--button-height) + 1px));
+    transition: transform 0.3s;
+}
+
+.expand-icon>svg {
+    height: var(--icon-size);
+    width: var(--icon-size);
+    transform: scale(1.5);
+    transition: transform 0.3s;
+}
+
+button.expand:hover,
+button.expand.loading {
+    padding-right: calc(25px + var(--button-height));
+}
+
+button.expand:hover>.expand-icon,
+button.expand.loading>.expand-icon {
+    transform: translateX(0);
+    transition: transform 0.3s 0.05s;
+}
+
+@media(max-width: 1366px) {
+    #cabecalho {
+        width: 50%;
+    }
+
+    #box-logo {
+        background-color: var(--cor-mais-clara);
+        border-radius: 10px;
+        padding: 7px;
+
+        span {
+            display: none;
+        }
+    }
+
+    #sidebar-links {
+
+        span {
+            display: none;
+        }
+    }
+}
