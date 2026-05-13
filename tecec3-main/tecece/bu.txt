@@ -1,0 +1,6 @@
+- animações fodas (homepage)
+- animações header (perfil/ diminuir sidebar/ etc)
+- @media para a sidebar e homepage no geral (deixar por ultimo)
+- educa+ design
+
+https://dev.to/webdeasy/top-20-css-buttons-animations-f41
